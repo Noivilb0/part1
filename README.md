@@ -33,3 +33,5 @@ The launch file integrates the following nodes:
 ### Launch command:
 ```bash
 roslaunch assignment_2_2024 assignment1.launch
+
+Note: the user input is through the same terminal you launch from, but sometimes the prompt for inputing the velocity gets pushed up, in any case you can directly start inputing the linear velocity in the terminal once the envirment is loaded.
