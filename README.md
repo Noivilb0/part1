@@ -1,4 +1,10 @@
+# Added documentation using Sphinx
+
+Documentation page
+https://noivilb0.github.io/part1/
+
 # ROS Action client & custom (srv,msg,launch) files
+
 
 ## Overview
 1. **Action Client Node**: A client node that interacts with the `/reaching_goal` action server to set a target goal (x, y) and move the robot to the target while providing feedback.
@@ -35,6 +41,3 @@ The launch file integrates the following nodes:
 roslaunch assignment_2_2024 assignment1.launch
 
 Note: the user input is through the same terminal you launch from, but sometimes the prompt for inputing the velocity gets pushed up, in any case you can directly start inputing the linear velocity in the terminal once the envirment is loaded.
-
-
-Added documentation using Sphinx
