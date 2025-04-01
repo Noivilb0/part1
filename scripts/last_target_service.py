@@ -11,26 +11,27 @@ def goal_callback(msg):
     Callback function that updates the last target coordinates from the incoming goal message.
     
     :param msg: The incoming PlanningActionGoal message that contains the target position.
+    :type msg: PlanningActionGoal
     """
     global last_target_position
     last_target_position['x'] = msg.goal.target_pose.pose.position.x
     last_target_position['y'] = msg.goal.target_pose.pose.position.y
     rospy.loginfo(f"Updated last target coordinates: x={last_target_position['x']}, y={last_target_position['y']}")
 
-
 def service_callback(request):
     """
     Callback function that handles service requests and returns the last target coordinates.
     
     :param request: The incoming service request, which does not require any parameters.
+    :type request: Last_targetRequest
     :return: A Last_targetResponse containing the last target coordinates.
+    :rtype: Last_targetResponse
     """
     if last_target_position['x'] is None or last_target_position['y'] is None:
         rospy.logwarn("No target set yet.")
         return Last_targetResponse(0.0, 0.0)  # Returning 0.0, 0.0 if no target has been set
     rospy.loginfo(f"Returning last target coordinates: x={last_target_position['x']}, y={last_target_position['y']}")
     return Last_targetResponse(last_target_position['x'], last_target_position['y'])
-
 
 def initialize_node():
     """
@@ -47,7 +48,6 @@ def initialize_node():
     rospy.loginfo("Last target service is ready.")
     
     rospy.spin()  # Keep the node running
-
 
 if __name__ == "__main__":
     initialize_node()

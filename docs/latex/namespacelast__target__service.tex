@@ -1,0 +1,57 @@
+\hypertarget{namespacelast__target__service}{}\doxysection{last\+\_\+target\+\_\+service Namespace Reference}
+\label{namespacelast__target__service}\index{last\_target\_service@{last\_target\_service}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacelast__target__service_a84252edcaa746a6f7289d5f5e08a3a7b}{goal\+\_\+callback}} (msg)
+\item 
+def \mbox{\hyperlink{namespacelast__target__service_a4c350fa0b73f1e865730c2436c1f4013}{service\+\_\+callback}} (request)
+\item 
+def \mbox{\hyperlink{namespacelast__target__service_a6b3169414603f3531e7e68d1e3c10112}{initialize\+\_\+node}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \mbox{\hyperlink{namespacelast__target__service_a7ae39f814a7a647d6e2251be71a023a8}{last\+\_\+target\+\_\+position}} = \{\textquotesingle{}x\textquotesingle{}\+: None, \textquotesingle{}y\textquotesingle{}\+: None\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacelast__target__service_a84252edcaa746a6f7289d5f5e08a3a7b}\label{namespacelast__target__service_a84252edcaa746a6f7289d5f5e08a3a7b}} 
+\index{last\_target\_service@{last\_target\_service}!goal\_callback@{goal\_callback}}
+\index{goal\_callback@{goal\_callback}!last\_target\_service@{last\_target\_service}}
+\doxysubsubsection{\texorpdfstring{goal\_callback()}{goal\_callback()}}
+{\footnotesize\ttfamily def last\+\_\+target\+\_\+service.\+goal\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback function that updates the last target coordinates from the incoming goal message.
+
+:param msg: The incoming PlanningActionGoal message that contains the target position.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacelast__target__service_a6b3169414603f3531e7e68d1e3c10112}\label{namespacelast__target__service_a6b3169414603f3531e7e68d1e3c10112}} 
+\index{last\_target\_service@{last\_target\_service}!initialize\_node@{initialize\_node}}
+\index{initialize\_node@{initialize\_node}!last\_target\_service@{last\_target\_service}}
+\doxysubsubsection{\texorpdfstring{initialize\_node()}{initialize\_node()}}
+{\footnotesize\ttfamily def last\+\_\+target\+\_\+service.\+initialize\+\_\+node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initializes the ROS node, subscribes to topics, and advertises services.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacelast__target__service_a4c350fa0b73f1e865730c2436c1f4013}\label{namespacelast__target__service_a4c350fa0b73f1e865730c2436c1f4013}} 
+\index{last\_target\_service@{last\_target\_service}!service\_callback@{service\_callback}}
+\index{service\_callback@{service\_callback}!last\_target\_service@{last\_target\_service}}
+\doxysubsubsection{\texorpdfstring{service\_callback()}{service\_callback()}}
+{\footnotesize\ttfamily def last\+\_\+target\+\_\+service.\+service\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback function that handles service requests and returns the last target coordinates.
+
+:param request: The incoming service request, which does not require any parameters.
+:return: A Last_targetResponse containing the last target coordinates.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacelast__target__service_a7ae39f814a7a647d6e2251be71a023a8}\label{namespacelast__target__service_a7ae39f814a7a647d6e2251be71a023a8}} 
+\index{last\_target\_service@{last\_target\_service}!last\_target\_position@{last\_target\_position}}
+\index{last\_target\_position@{last\_target\_position}!last\_target\_service@{last\_target\_service}}
+\doxysubsubsection{\texorpdfstring{last\_target\_position}{last\_target\_position}}
+{\footnotesize\ttfamily dictionary last\+\_\+target\+\_\+service.\+last\+\_\+target\+\_\+position = \{\textquotesingle{}x\textquotesingle{}\+: None, \textquotesingle{}y\textquotesingle{}\+: None\}}
+

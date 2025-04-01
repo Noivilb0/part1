@@ -1,0 +1,50 @@
+\hypertarget{namespaceaction__client}{}\doxysection{action\+\_\+client Namespace Reference}
+\label{namespaceaction__client}\index{action\_client@{action\_client}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceaction__client_a26f082c3b3b4b30b8d1f68af7f8970fa}{clbk\+\_\+odom}} (msg)
+\item 
+def \mbox{\hyperlink{namespaceaction__client_aa487361241e08d795ff6aac88abf5757}{clbk\+\_\+feedback}} (feedback)
+\item 
+def \mbox{\hyperlink{namespaceaction__client_add25ee087c9dfb6360309c9d9a0d96f5}{action}} ()
+\item 
+def \mbox{\hyperlink{namespaceaction__client_aece5b3dc7f370ff7ab45e105b5e6bbaa}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceaction__client_add25ee087c9dfb6360309c9d9a0d96f5}\label{namespaceaction__client_add25ee087c9dfb6360309c9d9a0d96f5}} 
+\index{action\_client@{action\_client}!action@{action}}
+\index{action@{action}!action\_client@{action\_client}}
+\doxysubsubsection{\texorpdfstring{action()}{action()}}
+{\footnotesize\ttfamily def action\+\_\+client.\+action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Action function that handles the goal coordinates from user input and sends the goal to the planner.
+While the robot is moving, the user can cancel the goal by pressing "c".
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceaction__client_aa487361241e08d795ff6aac88abf5757}\label{namespaceaction__client_aa487361241e08d795ff6aac88abf5757}} 
+\index{action\_client@{action\_client}!clbk\_feedback@{clbk\_feedback}}
+\index{clbk\_feedback@{clbk\_feedback}!action\_client@{action\_client}}
+\doxysubsubsection{\texorpdfstring{clbk\_feedback()}{clbk\_feedback()}}
+{\footnotesize\ttfamily def action\+\_\+client.\+clbk\+\_\+feedback (\begin{DoxyParamCaption}\item[{}]{feedback }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback function that processes feedback from the client.
+
+:param feedback: Feedback from the target as "Target reached!" or "Target cancelled!".
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceaction__client_a26f082c3b3b4b30b8d1f68af7f8970fa}\label{namespaceaction__client_a26f082c3b3b4b30b8d1f68af7f8970fa}} 
+\index{action\_client@{action\_client}!clbk\_odom@{clbk\_odom}}
+\index{clbk\_odom@{clbk\_odom}!action\_client@{action\_client}}
+\doxysubsubsection{\texorpdfstring{clbk\_odom()}{clbk\_odom()}}
+{\footnotesize\ttfamily def action\+\_\+client.\+clbk\+\_\+odom (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceaction__client_aece5b3dc7f370ff7ab45e105b5e6bbaa}\label{namespaceaction__client_aece5b3dc7f370ff7ab45e105b5e6bbaa}} 
+\index{action\_client@{action\_client}!main@{main}}
+\index{main@{main}!action\_client@{action\_client}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def action\+\_\+client.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Main function where the ROS node is initialized and the publisher and subscriber are initialized.
+\end{DoxyVerb}
+ 

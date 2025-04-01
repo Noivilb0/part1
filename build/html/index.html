@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Researchtrack Assignment Documentation (ROS) &#8212; assignment_2_2024 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="researchtrack-assignment-documentation-ros">
+<h1>Researchtrack Assignment Documentation (ROS)<a class="headerlink" href="#researchtrack-assignment-documentation-ros" title="Permalink to this headline">¶</a></h1>
+<p>Overview</p>
+<p>This package extends the original ROS package developed by Prof. Carmine Recchiuto for simulating and controlling a mobile robot in Gazebo. The key contributions include:</p>
+<p>Action Client Node: A client node that interacts with the /reaching_goal action server to set a target goal (x, y), move the robot to the target, and provide feedback.</p>
+<p>Service to Track Last Target: A service node that tracks the last target goal sent to the robot and responds with the last known target coordinates.</p>
+<p>Custom Message for Position and Velocity: A subscriber listens to the robot’s odometry data and publishes a custom message containing the robot’s position and velocity.</p>
+<p>Launch File: A launch file that integrates multiple nodes for seamless execution.</p>
+</div>
+<div class="section" id="module-scripts.action_client">
+<span id="module-1-action-client"></span><h1>Module 1 - Action Client<a class="headerlink" href="#module-scripts.action_client" title="Permalink to this headline">¶</a></h1>
+<p>ROS Action Client Script</p>
+<p>This script initializes a ROS node that communicates with an action server to send goal coordinates for a robot.
+It also subscribes to the /odom topic to receive odometry data and publishes processed robot position and velocity data.</p>
+<p>Main Components:
+- <strong>clbk_odom</strong>: Callback function to process odometry data and publish robot position &amp; velocity.
+- <strong>clbk_feedback</strong>: Callback function to handle feedback from the action server.
+- <strong>action</strong>: Function to accept user input for goal coordinates and send them to the action server.
+- <strong>main</strong>: Initializes the ROS node, publisher, and subscriber, and runs the action function.</p>
+<p>Author: [Mohamed Elhefnawy]
+Date: [01/04/2025]</p>
+<dl class="function">
+<dt id="scripts.action_client.action">
+<code class="descclassname">scripts.action_client.</code><code class="descname">action</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/action_client.html#action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scripts.action_client.action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles user input to send goal coordinates to the action server.</p>
+<p>The function initializes an action client, waits for the server, and then
+continuously accepts user input for goal coordinates. The user can cancel
+an ongoing goal by pressing “c”.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="scripts.action_client.clbk_feedback">
+<code class="descclassname">scripts.action_client.</code><code class="descname">clbk_feedback</code><span class="sig-paren">(</span><em>feedback</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/action_client.html#clbk_feedback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scripts.action_client.clbk_feedback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback function that processes feedback from the action server.</p>
+<p>Displays feedback messages when the robot reaches or cancels a target.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feedback</strong> (<em>Feedback</em>) – Feedback message from the action server.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="scripts.action_client.clbk_odom">
+<code class="descclassname">scripts.action_client.</code><code class="descname">clbk_odom</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/action_client.html#clbk_odom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scripts.action_client.clbk_odom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback function to process odometry data.
+Extracts the robot’s position (x, y) and velocities (linear x, angular z)
+and publishes them on the /robot_pos_vel topic.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>Odometry</em>) – Odometry message received from the /odom topic.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="scripts.action_client.main">
+<code class="descclassname">scripts.action_client.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/action_client.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scripts.action_client.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main function that initializes the ROS node and sets up publishers and subscribers.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">scripts.action_client.</code><code class="descname">action</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/action_client.html#action"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Handles user input to send goal coordinates to the action server.</p>
+<p>The function initializes an action client, waits for the server, and then
+continuously accepts user input for goal coordinates. The user can cancel
+an ongoing goal by pressing “c”.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-scripts.last_target_service">
+<span id="module-2-last-target-service"></span><h1>Module 2 - Last target service<a class="headerlink" href="#module-scripts.last_target_service" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="scripts.last_target_service.goal_callback">
+<code class="descclassname">scripts.last_target_service.</code><code class="descname">goal_callback</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/last_target_service.html#goal_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scripts.last_target_service.goal_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback function that updates the last target coordinates from the incoming goal message.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>PlanningActionGoal</em>) – The incoming PlanningActionGoal message that contains the target position.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="scripts.last_target_service.initialize_node">
+<code class="descclassname">scripts.last_target_service.</code><code class="descname">initialize_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/last_target_service.html#initialize_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scripts.last_target_service.initialize_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the ROS node, subscribes to topics, and advertises services.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="scripts.last_target_service.service_callback">
+<code class="descclassname">scripts.last_target_service.</code><code class="descname">service_callback</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/last_target_service.html#service_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scripts.last_target_service.service_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback function that handles service requests and returns the last target coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>Last_targetRequest</em>) – The incoming service request, which does not require any parameters.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A Last_targetResponse containing the last target coordinates.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Last_targetResponse</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">assignment_2_2024</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Mohamed Elhefnawy.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
